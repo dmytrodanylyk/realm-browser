@@ -8,14 +8,18 @@ import android.widget.TextView;
 import com.dd.realmbrowser.RealmBrowser;
 import com.dd.realmbrowser.RealmFilesActivity;
 import com.dd.realmbrowser.RealmModelsActivity;
+import com.dd.realmsample.data.Address;
+import com.dd.realmsample.data.RealmString;
+import com.dd.realmsample.data.User;
 import io.realm.Realm;
+import io.realm.RealmList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    public static final String REALM_FILE_NAME = "db7";
+    public static final String REALM_FILE_NAME = "db9";
     private TextView mTxtTitle;
 
     @Override
@@ -24,6 +28,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         RealmBrowser.getInstance().getRealmModelList().add(User.class);
+        RealmBrowser.getInstance().getRealmModelList().add(Address.class);
+        RealmBrowser.getInstance().getRealmModelList().add(RealmString.class);
 
         mTxtTitle = (TextView) findViewById(R.id.txtTitle);
         findViewById(R.id.btnInsert).setOnClickListener(this);
@@ -79,12 +85,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         final List<User> userList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
+            Address address = new Address();
+            address.setLat(49.8397473);
+            address.setLon(24.0233077);
+
             User user = new User();
             user.setName("Jon Doe " + i);
             user.setIsBlocked(Math.random() > 0.5);
             user.setAge(i);
-            user.setLat(49.8397473);
-            user.setLon(24.0233077);
+            user.setAddress(address);
+
+            RealmList<RealmString> emailList = new RealmList<>();
+            for (int k = 0; k < 5; k++) {
+                emailList.add(new RealmString("jondoe" + k + "@gmail.com"));
+            }
+            user.setEmailList(emailList);
+
             userList.add(user);
         }
 

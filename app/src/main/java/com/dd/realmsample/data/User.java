@@ -1,29 +1,30 @@
-package com.dd.realmsample;
+package com.dd.realmsample.data;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 public class User extends RealmObject {
 
-    private String name;
-    private boolean isBlocked;
     private int age;
-    private double lat;
-    private double lon;
+    private boolean isBlocked;
+    private String name;
+    private Address address;
+    private RealmList<RealmString> emailList;
 
-    public double getLat() {
-        return lat;
+    public RealmList<RealmString> getEmailList() {
+        return emailList;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    public void setEmailList(RealmList<RealmString> emailList) {
+        this.emailList = emailList;
     }
 
-    public double getLon() {
-        return lon;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setLon(double lon) {
-        this.lon = lon;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getName() {
