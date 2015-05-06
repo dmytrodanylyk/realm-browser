@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Realm Sample</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="Insert_users">Insert 100 Users</string>
+    <string name="Clear_database">Clear database</string>
+    <string name="Open_file_list">Open file list</string>
+    <string name="Open_model_list">Open model list</string>
+</resources>

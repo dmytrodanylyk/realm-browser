@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ColumnText">
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">#666666</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="ColumnText.Bold" parent="ColumnText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
