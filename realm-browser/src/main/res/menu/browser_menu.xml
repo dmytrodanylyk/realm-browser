@@ -3,4 +3,7 @@
     <item
             android:id="@+id/action_columns"
             android:title="Select Column"/>
+    <item
+            android:id="@+id/action_settings"
+            android:title="Settings"/>
 </menu>

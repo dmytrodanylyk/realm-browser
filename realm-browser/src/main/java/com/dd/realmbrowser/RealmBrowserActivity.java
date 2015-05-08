@@ -79,6 +79,11 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
         updateColumnTitle(mSelectedFieldList);
     }
 
+    @Override
+    protected void onResume() {
+        mAdapter.notifyDataSetChanged();
+        super.onResume();
+    }
 
     @Override
     protected void onDestroy() {
@@ -93,6 +98,8 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
         int id = item.getItemId();
         if (id == R.id.action_columns) {
             showColumnsDialog();
+        } if (id == R.id.action_settings) {
+            SettingsActivity.start(this);
         }
 
         return super.onOptionsItemSelected(item);

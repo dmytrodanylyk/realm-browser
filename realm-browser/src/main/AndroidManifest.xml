@@ -3,20 +3,23 @@
           package="com.dd.realmbrowser">
 
     <application
-            android:allowBackup="true"
-            android:label="@string/title">
+            android:allowBackup="true">
         <activity
                 android:theme="@style/Theme.AppCompat.Light"
                 android:name=".RealmFilesActivity"
-                android:label="@string/title"/>
+                android:label="@string/rb_title"/>
         <activity
                 android:theme="@style/Theme.AppCompat.Light"
                 android:name=".RealmModelsActivity"
-                android:label="@string/title"/>
+                android:label="@string/rb_title"/>
         <activity
                 android:theme="@style/Theme.AppCompat.Light"
                 android:name=".RealmBrowserActivity"
-                android:label="@string/title"/>
+                android:label="@string/rb_title"/>
+        <activity
+                android:theme="@style/Theme.AppCompat.Light"
+                android:name=".SettingsActivity"
+                android:label="@string/rb_title"/>
 
     </application>
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.dd.realmbrowser.model.RealmPreferences;
 import com.dd.realmbrowser.utils.L;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
@@ -26,9 +27,11 @@ public class RealmAdapter extends RecyclerView.Adapter<RealmAdapter.ViewHolder> 
     private Context mContext;
     private List<Field> mFieldList;
     private Listener mListener;
+    private RealmPreferences mRealmPreferences;
 
     public RealmAdapter(@NonNull Context context, @NonNull RealmResults<? extends RealmObject> realmObjects,
                         @NonNull List<Field> fieldList, @NonNull Listener listener) {
+        mRealmPreferences = new RealmPreferences(context);
         mContext = context;
         mRealmObjects = realmObjects;
         mFieldList = fieldList;
@@ -48,9 +51,9 @@ public class RealmAdapter extends RecyclerView.Adapter<RealmAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (position % 2 == 0) {
-            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.grey));
+            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.rb_grey));
         } else {
-            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.white));
+            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.rb_white));
         }
 
         LinearLayout.LayoutParams layoutParams2 = createLayoutParams();
@@ -104,6 +107,11 @@ public class RealmAdapter extends RecyclerView.Adapter<RealmAdapter.ViewHolder> 
             holder.txtColumn2.setText(null);
             holder.txtColumn3.setText(null);
         }
+
+        boolean shouldWrapText = mRealmPreferences.shouldWrapText();
+        holder.txtColumn1.setSingleLine(!shouldWrapText);
+        holder.txtColumn2.setSingleLine(!shouldWrapText);
+        holder.txtColumn3.setSingleLine(!shouldWrapText);
 
         holder.txtColumn2.setLayoutParams(layoutParams2);
         holder.txtColumn3.setLayoutParams(layoutParams3);
