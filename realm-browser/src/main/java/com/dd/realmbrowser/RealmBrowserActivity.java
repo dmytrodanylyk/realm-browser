@@ -34,6 +34,7 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
     private TextView mTxtColumn1;
     private TextView mTxtColumn2;
     private TextView mTxtColumn3;
+    private List<Field> mTmpSelectedFieldList;
     private List<Field> mSelectedFieldList;
     private List<Field> mFieldsList;
 
@@ -58,6 +59,7 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
         RealmResults<? extends RealmObject> realmObjects = mRealm.allObjects(mRealmObjectClass);
 
         mSelectedFieldList = new ArrayList<>();
+        mTmpSelectedFieldList = new ArrayList<>();
         mFieldsList = new ArrayList<>();
         mFieldsList.addAll(Arrays.asList(mRealmObjectClass.getDeclaredFields()));
 
@@ -108,6 +110,7 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
     }
 
     private void selectDefaultFields() {
+        mSelectedFieldList.clear();
         for (Field field : mFieldsList) {
             if (mSelectedFieldList.size() < 3) {
                 mSelectedFieldList.add(field);
@@ -159,6 +162,9 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
             checkedItems[i] = mSelectedFieldList.contains(mFieldsList.get(i));
         }
 
+        mTmpSelectedFieldList.clear();
+        mTmpSelectedFieldList.addAll(mSelectedFieldList);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Columns to display");
         builder.setMultiChoiceItems(items, checkedItems,
@@ -167,18 +173,21 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
                     public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
                         Field field = mFieldsList.get(indexSelected);
                         if (isChecked) {
-                            mSelectedFieldList.add(field);
-                        } else if (mSelectedFieldList.contains(field)) {
-                            mSelectedFieldList.remove(field);
-                            if (mSelectedFieldList.isEmpty()) {
-                                selectDefaultFields();
-                            }
+                            mTmpSelectedFieldList.add(field);
+                        } else if (mTmpSelectedFieldList.contains(field)) {
+                            mTmpSelectedFieldList.remove(field);
                         }
                     }
                 })
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        if (mTmpSelectedFieldList.isEmpty()) {
+                            selectDefaultFields();
+                        } else {
+                            mSelectedFieldList.clear();
+                            mSelectedFieldList.addAll(mTmpSelectedFieldList);
+                        }
                         updateColumnTitle(mSelectedFieldList);
                         mAdapter.setFieldList(mSelectedFieldList);
                         mAdapter.notifyDataSetChanged();
