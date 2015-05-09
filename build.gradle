@@ -13,7 +13,17 @@ buildscript {
 }
 
 allprojects {
+    version = VERSION_NAME
+    group = GROUP
+
     repositories {
         jcenter()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
     }
+}
+
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
 }

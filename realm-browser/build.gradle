@@ -19,8 +19,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName project.VERSION_NAME
     }
     buildTypes {
         release {
@@ -37,3 +37,6 @@ dependencies {
     compile 'com.android.support:support-annotations:21.0.3'
     compile 'io.realm:realm-android:0.80.1'
 }
+
+// Used to push in maven
+//apply from: '../maven_push.gradle'
