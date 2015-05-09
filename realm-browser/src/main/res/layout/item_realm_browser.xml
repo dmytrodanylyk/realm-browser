@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             style="@style/ColumnText"
-            tools:text="@string/test_text_small"/>
+            tools:text="@string/rb_test_text_small"/>
 
     <TextView
             android:id="@+id/txtColumn2"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             style="@style/ColumnText"
-            tools:text="@string/test_text_small"/>
+            tools:text="@string/rb_test_text_small"/>
 
     <TextView
             android:id="@+id/txtColumn3"
@@ -37,6 +37,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             style="@style/ColumnText"
-            tools:text="@string/test_text_small"/>
+            tools:text="@string/rb_test_text_small"/>
 
 </LinearLayout>

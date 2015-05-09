@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
                 style="@style/ColumnText.Bold"
-                tools:text="@string/test_text_small"/>
+                tools:text="@string/rb_test_text_small"/>
 
         <TextView
                 android:id="@+id/txtColumn2"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
                 style="@style/ColumnText.Bold"
-                tools:text="@string/test_text_small"/>
+                tools:text="@string/rb_test_text_small"/>
 
         <TextView
                 android:id="@+id/txtColumn3"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
                 style="@style/ColumnText.Bold"
-                tools:text="@string/test_text_small"/>
+                tools:text="@string/rb_test_text_small"/>
 
     </LinearLayout>
 
@@ -51,7 +51,6 @@
             android:background="#ffcdcdcd"/>
 
     <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
