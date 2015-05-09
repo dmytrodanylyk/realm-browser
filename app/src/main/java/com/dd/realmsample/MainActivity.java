@@ -9,6 +9,7 @@ import com.dd.realmbrowser.RealmBrowser;
 import com.dd.realmbrowser.RealmFilesActivity;
 import com.dd.realmbrowser.RealmModelsActivity;
 import com.dd.realmsample.data.Address;
+import com.dd.realmsample.data.Contact;
 import com.dd.realmsample.data.RealmString;
 import com.dd.realmsample.data.User;
 import io.realm.Realm;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    public static final String REALM_FILE_NAME = "db9";
+    public static final String REALM_FILE_NAME = "db10";
     private TextView mTxtTitle;
 
     @Override
@@ -27,9 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RealmBrowser.getInstance().getRealmModelList().add(User.class);
-        RealmBrowser.getInstance().getRealmModelList().add(Address.class);
-        RealmBrowser.getInstance().getRealmModelList().add(RealmString.class);
+        RealmBrowser.getInstance().addRealmModel(User.class, Address.class, RealmString.class, Contact.class);
 
         mTxtTitle = (TextView) findViewById(R.id.txtTitle);
         findViewById(R.id.btnInsert).setOnClickListener(this);
@@ -100,6 +99,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 emailList.add(new RealmString("jondoe" + k + "@gmail.com"));
             }
             user.setEmailList(emailList);
+
+            RealmList<Contact> contactList = new RealmList<>();
+            for (int k = 0; k < 10; k++) {
+                Contact contact = new Contact();
+                contact.setId(k);
+                contact.setName("Filip");
+                contactList.add(contact);
+            }
+            user.setContactList(contactList);
 
             userList.add(user);
         }

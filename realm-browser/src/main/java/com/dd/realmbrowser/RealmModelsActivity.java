@@ -27,7 +27,7 @@ public class RealmModelsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_list_view);
+        setContentView(R.layout.ac_realm_list_view);
 
         List<String> modelList = new ArrayList<>();
         for (Class<? extends RealmObject> file : RealmBrowser.getInstance().getRealmModelList()) {

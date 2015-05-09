@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,11 +15,17 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.dd.realmbrowser.utils.L;
+import com.dd.realmbrowser.utils.MagicUtils;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.RealmResults;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,18 +53,37 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
         activity.startActivity(intent);
     }
 
+    public static void start(Activity activity, String realmFileName) {
+        Intent intent = new Intent(activity, RealmBrowserActivity.class);
+        intent.putExtra(EXTRAS_REALM_FILE_NAME, realmFileName);
+        activity.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_realm_browser);
 
         String realmFileName = getIntent().getStringExtra(EXTRAS_REALM_FILE_NAME);
-        int index = getIntent().getIntExtra(EXTRAS_REALM_MODEL_INDEX, 0);
 
         mRealm = Realm.getInstance(getApplicationContext(), realmFileName);
+        AbstractList<? extends RealmObject> realmObjects;
 
-        mRealmObjectClass = RealmBrowser.getInstance().getRealmModelList().get(index);
-        RealmResults<? extends RealmObject> realmObjects = mRealm.allObjects(mRealmObjectClass);
+        if(getIntent().getExtras().containsKey(EXTRAS_REALM_MODEL_INDEX)) {
+            int index = getIntent().getIntExtra(EXTRAS_REALM_MODEL_INDEX, 0);
+            mRealmObjectClass = RealmBrowser.getInstance().getRealmModelList().get(index);
+            realmObjects = mRealm.allObjects(mRealmObjectClass);
+        } else {
+            RealmObject object = RealmHolder.getInstance().getObject();
+            Field field = RealmHolder.getInstance().getField();
+            String methodName = MagicUtils.createMethodName(field);
+            realmObjects = invokeMethod(object, methodName);
+            if(MagicUtils.isParameterizedField(field)) {
+                ParameterizedType pType = (ParameterizedType) field.getGenericType();
+                Class<?> pTypeClass = (Class<?>) pType.getActualTypeArguments()[0];
+                mRealmObjectClass = (Class<? extends RealmObject>) pTypeClass;
+            }
+        }
 
         mSelectedFieldList = new ArrayList<>();
         mTmpSelectedFieldList = new ArrayList<>();
@@ -112,7 +139,23 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
     }
 
     @Override
-    public void onRowItemClicked() {
+    public void onRowItemClicked(@NonNull RealmObject realmObject, @NonNull Field field) {
+        RealmHolder.getInstance().setObject(realmObject);
+        RealmHolder.getInstance().setField(field);
+        String realmFileName = getIntent().getStringExtra(EXTRAS_REALM_FILE_NAME);
+        RealmBrowserActivity.start(this, realmFileName);
+    }
+
+    @Nullable
+    public static RealmList<? extends RealmObject> invokeMethod(Object realmObject, String methodName) {
+        RealmList<? extends RealmObject> result = null;
+        try {
+            Method method = realmObject.getClass().getMethod(methodName);
+            result = (RealmList<? extends RealmObject>) method.invoke(realmObject);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            L.e(e.toString());
+        }
+        return result;
 
     }
 

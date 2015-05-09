@@ -10,6 +10,7 @@ public class User extends RealmObject {
     private String name;
     private Address address;
     private RealmList<RealmString> emailList;
+    private RealmList<Contact> contactList;
 
     public RealmList<RealmString> getEmailList() {
         return emailList;
@@ -49,5 +50,13 @@ public class User extends RealmObject {
 
     public void setIsBlocked(boolean isBlocked) {
         this.isBlocked = isBlocked;
+    }
+
+    public RealmList<Contact> getContactList() {
+        return contactList;
+    }
+
+    public void setContactList(RealmList<Contact> contactList) {
+        this.contactList = contactList;
     }
 }

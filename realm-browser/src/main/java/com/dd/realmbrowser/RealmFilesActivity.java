@@ -22,7 +22,7 @@ public class RealmFilesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_list_view);
+        setContentView(R.layout.ac_realm_list_view);
 
         mIgnoreExtensionList = new ArrayList<>();
         mIgnoreExtensionList.add("log");

@@ -9,7 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import com.dd.realmbrowser.model.RealmPreferences;
 
-public class SettingsActivity extends AppCompatActivity {
+class SettingsActivity extends AppCompatActivity {
 
     private RealmPreferences mRealmPreferences;
 
@@ -21,7 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_settings);
+        setContentView(R.layout.ac_realm_settings);
 
         mRealmPreferences = new RealmPreferences(getApplicationContext());
 

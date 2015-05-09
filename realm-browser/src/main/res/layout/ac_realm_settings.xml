@@ -11,6 +11,6 @@
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="@string/Wrap_text"/>
+            android:text="@string/rb_Wrap_text"/>
 
 </LinearLayout>
