@@ -2,12 +2,12 @@
 
 Android [Realm](https://github.com/realm/realm-java) Browser
 
-// ![](screenshots/intro.gif)
+![](screenshots/intro.png)
 
 ### Wiki
 
 - [Home]
-- [Screenshots]
+- [Limitations]
 - [User Guide]
 
 ### Integration
@@ -50,9 +50,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-[Home]:https://notyet
-[Screenshots]:notyet
-[User Guide]:notyet
+[Home]:https://github.com/dmytrodanylyk/realm-browser/wiki
+[Limitations]:https://github.com/dmytrodanylyk/realm-browser/wiki/Limitations
+[User Guide]:https://github.com/dmytrodanylyk/realm-browser/wiki/User-Guide
 [Gradle, Please]:http://gradleplease.appspot.com/
 
-[![Analytics](https://ga-beacon.appspot.com/UA-44382495-3/circular-progress-button/readme)](https://github.com/igrigorik/ga-beacon)
+[![Analytics](https://ga-beacon.appspot.com/UA-44382495-7/realm-browser/readme)](https://github.com/igrigorik/ga-beacon)
