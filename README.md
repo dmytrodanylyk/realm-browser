@@ -2,7 +2,7 @@
 
 Android [Realm](https://github.com/realm/realm-java) Browser
 
-// TODO screenshot ![](screenshots/intro.gif)
+// ![](screenshots/intro.gif)
 
 ### Wiki
 
@@ -16,20 +16,13 @@ The lib is available on Maven Central, you can find it with [Gradle, please]
 
 ```
 dependencies {
-    compile 'com.github.dmytrodanylyk.realm-browser:1.0.0'
+    compile 'com.github.dmytrodanylyk.realm-browser:0.0.1'
 }
 ```
 
 ### Contributions
 
 If you want to contribute to this library make sure you send pull request to **dev** branch.
-
-### Sample
-
-<a href="https://play.google.com/store/apps/details?id=com.dd.sample.progressbutton">
-  <img alt="Android app on Google Play"
-       src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
-</a>
 
 ### License
 
