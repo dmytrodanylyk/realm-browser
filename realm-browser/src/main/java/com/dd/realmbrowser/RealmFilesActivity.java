@@ -1,5 +1,7 @@
 package com.dd.realmbrowser;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,6 +20,11 @@ public class RealmFilesActivity extends AppCompatActivity {
 
     private List<String> mIgnoreExtensionList;
     private ArrayAdapter<String> mAdapter;
+
+    public static void start(Activity activity) {
+        Intent intent = new Intent(activity, RealmFilesActivity.class);
+        activity.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
