@@ -36,5 +36,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'io.realm:realm-android:0.80.1'
 //    compile project(':realm-browser')
-    compile 'com.github.dmytrodanylyk.realm-browser:library:0.0.1-SNAPSHOT'
+    compile 'com.github.dmytrodanylyk.realm-browser:library:0.0.1'
 }

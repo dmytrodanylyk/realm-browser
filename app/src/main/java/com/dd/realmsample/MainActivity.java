@@ -1,7 +1,6 @@
 package com.dd.realmsample;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -28,7 +27,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RealmBrowser.getInstance().addRealmModel(User.class, Address.class, RealmString.class, Contact.class);
+        RealmBrowser.getInstance().addRealmModel(User.class, Address.class,
+                RealmString.class, Contact.class);
 
         mTxtTitle = (TextView) findViewById(R.id.txtTitle);
         findViewById(R.id.btnInsert).setOnClickListener(this);
@@ -123,8 +123,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void startRealmFilesActivity() {
-        Intent intent = new Intent(this, RealmFilesActivity.class);
-        startActivity(intent);
+        RealmFilesActivity.start(this);
     }
 
     private void startRealmModelsActivity() {
