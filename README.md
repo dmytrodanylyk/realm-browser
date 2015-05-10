@@ -1,4 +1,4 @@
-### Description [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.dmytrodanylyk.realm-browser/library/badge.png?style=flat)](http://goo.gl/cKevJjr) [![Android Arsenal](http://img.shields.io/badge/Realm-Browser.png?style=flat)](http://android-arsenal.com/details/1/67)
+### Description ![Maven Central](https://maven-badges.herokuapp.com/maven-central/realm-browser/library/badge.png?style=flat)
 
 Android [Realm](https://github.com/realm/realm-java) Browser
 
