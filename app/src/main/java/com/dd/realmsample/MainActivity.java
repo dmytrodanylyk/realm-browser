@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import com.dd.realmbrowser.RealmBrowser;
-import com.dd.realmbrowser.RealmFilesActivity;
-import com.dd.realmbrowser.RealmModelsActivity;
 import com.dd.realmsample.data.Address;
 import com.dd.realmsample.data.Contact;
 import com.dd.realmsample.data.RealmString;
@@ -37,6 +35,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.btnOpenModel).setOnClickListener(this);
 
         updateTitle();
+
+        RealmBrowser.showRealmFilesNotification(this);
     }
 
     @Override
@@ -123,11 +123,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void startRealmFilesActivity() {
-        RealmFilesActivity.start(this);
+        RealmBrowser.startRealmFilesActivity(this);
     }
 
     private void startRealmModelsActivity() {
-        RealmModelsActivity.start(this, REALM_FILE_NAME);
+        RealmBrowser.startRealmModelsActivity(this, REALM_FILE_NAME);
     }
 
 }
