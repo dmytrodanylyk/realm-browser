@@ -32,8 +32,8 @@ public class RealmFilesActivity extends AppCompatActivity {
         setContentView(R.layout.ac_realm_list_view);
 
         mIgnoreExtensionList = new ArrayList<>();
-        mIgnoreExtensionList.add("log");
-        mIgnoreExtensionList.add("lock");
+        mIgnoreExtensionList.add(".log");
+        mIgnoreExtensionList.add(".lock");
 
         File dataDir = new File(getApplicationInfo().dataDir, "files");
         File[] files = dataDir.listFiles();
@@ -61,7 +61,7 @@ public class RealmFilesActivity extends AppCompatActivity {
         int index = fileName.lastIndexOf(".");
         if (index > 0) {
             String extension = fileName.substring(index);
-            isValid = mIgnoreExtensionList.contains(extension);
+            isValid = !mIgnoreExtensionList.contains(extension);
         }
         return isValid;
     }
