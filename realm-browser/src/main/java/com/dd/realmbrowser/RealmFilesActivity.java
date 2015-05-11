@@ -57,12 +57,13 @@ public class RealmFilesActivity extends AppCompatActivity {
     }
 
     private boolean isValid(String fileName) {
-        boolean isValid = true;
-        int index = fileName.lastIndexOf(".");
-        if (index > 0) {
-            String extension = fileName.substring(index);
-            isValid = mIgnoreExtensionList.contains(extension);
+        boolean isValid = false;
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            String extension = fileName.substring(i + 1);
+            isValid = extension.equals("realm");
         }
+
         return isValid;
     }
 
