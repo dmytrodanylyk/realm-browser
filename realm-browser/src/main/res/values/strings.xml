@@ -2,4 +2,5 @@
     <string name="rb_title">Realm Browser</string>
     <string name="rb_test_text_small">Lorem ipsum</string>
     <string name="rb_Wrap_text">Wrap text inside column</string>
+    <string name="rb_click_to_launch">Click to launch</string>
 </resources>

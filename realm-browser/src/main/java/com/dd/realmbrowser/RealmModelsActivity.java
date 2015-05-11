@@ -3,6 +3,7 @@ package com.dd.realmbrowser;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,9 +17,8 @@ import java.util.List;
 public class RealmModelsActivity extends AppCompatActivity {
 
     private static final String EXTRAS_REALM_FILE_NAME = "EXTRAS_REALM_FILE_NAME";
-    private ArrayAdapter<String> mAdapter;
 
-    public static void start(Activity activity, String realmFileName) {
+    public static void start(@NonNull Activity activity, @NonNull String realmFileName) {
         Intent intent = new Intent(activity, RealmModelsActivity.class);
         intent.putExtra(EXTRAS_REALM_FILE_NAME, realmFileName);
         activity.startActivity(intent);
@@ -34,9 +34,9 @@ public class RealmModelsActivity extends AppCompatActivity {
             modelList.add(file.getSimpleName());
         }
 
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, modelList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, modelList);
         ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(mAdapter);
+        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
