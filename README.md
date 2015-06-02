@@ -16,7 +16,7 @@ The lib is available on Maven Central, you can find it with [Gradle, please]
 
 ```
 dependencies {
-    compile 'com.github.dmytrodanylyk.realm-browser:0.0.2'
+    compile 'com.github.dmytrodanylyk.realm-browser:library:0.0.2'
 }
 ```
 
