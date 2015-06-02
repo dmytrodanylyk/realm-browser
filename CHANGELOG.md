@@ -1,3 +1,8 @@
+## 0.0.3
+
+Fixed issues
+* #12 NPE when trying to open table which has null values
+
 ## 0.0.2
 
 Enchantments

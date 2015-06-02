@@ -26,12 +26,15 @@ public class MagicUtils {
         return methodName;
     }
 
-    @Nullable
+    @NonNull
     public static String invokeMethod(Object realmObject, String methodName) {
-        String result = null;
+        String result = "null";
         try {
             Method method = realmObject.getClass().getMethod(methodName);
-            result = method.invoke(realmObject).toString();
+            Object resultObj = method.invoke(realmObject);
+            if(resultObj != null) {
+                result = resultObj.toString();
+            }
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             L.e(e.toString());
         }
