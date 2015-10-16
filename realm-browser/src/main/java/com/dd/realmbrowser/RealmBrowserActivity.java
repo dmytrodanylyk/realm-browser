@@ -70,7 +70,7 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
         RealmConfiguration config = new RealmConfiguration.Builder(this)
                 .name(realmFileName)
                 .build();
-        Realm mRealm = Realm.getInstance(config);
+        mRealm = Realm.getInstance(config);
 
         AbstractList<? extends RealmObject> realmObjects;
 
