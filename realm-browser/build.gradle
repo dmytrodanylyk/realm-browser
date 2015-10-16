@@ -23,7 +23,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:recyclerview-v7:23.1.0'
     compile 'com.android.support:support-annotations:23.1.0'
-    compile 'io.realm:realm-android:0.80.1'
+    compile 'io.realm:realm-android:0.83.1'
 }
 
 // Used to push in maven
