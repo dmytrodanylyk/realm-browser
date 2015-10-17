@@ -10,6 +10,7 @@ import com.dd.realmsample.data.Contact;
 import com.dd.realmsample.data.RealmString;
 import com.dd.realmsample.data.User;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmList;
 
 import java.util.ArrayList;
@@ -60,14 +61,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void updateTitle() {
-        Realm realm = Realm.getInstance(getApplicationContext(), REALM_FILE_NAME);
+        RealmConfiguration config = new RealmConfiguration.Builder(this)
+                .name(REALM_FILE_NAME)
+                .build();
+        Realm realm = Realm.getInstance(config);
         int size = realm.allObjects(User.class).size();
         mTxtTitle.setText(String.format("Items in database: %d", size));
         realm.close();
     }
 
     private void removeAllUsers() {
-        Realm realm = Realm.getInstance(getApplicationContext(), REALM_FILE_NAME);
+        RealmConfiguration config = new RealmConfiguration.Builder(this)
+                .name(REALM_FILE_NAME)
+                .build();
+        Realm realm = Realm.getInstance(config);
 
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -80,7 +87,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void insertUsers(int count) {
-        Realm realm = Realm.getInstance(getApplicationContext(), REALM_FILE_NAME);
+        RealmConfiguration config = new RealmConfiguration.Builder(this)
+                .name(REALM_FILE_NAME)
+                .build();
+        Realm realm = Realm.getInstance(config);
 
         final List<User> userList = new ArrayList<>();
         for (int i = 0; i < count; i++) {

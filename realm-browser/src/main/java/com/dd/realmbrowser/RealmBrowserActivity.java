@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.dd.realmbrowser.utils.L;
 import com.dd.realmbrowser.utils.MagicUtils;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -66,7 +67,11 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmAdap
 
         String realmFileName = getIntent().getStringExtra(EXTRAS_REALM_FILE_NAME);
 
-        mRealm = Realm.getInstance(getApplicationContext(), realmFileName);
+        RealmConfiguration config = new RealmConfiguration.Builder(this)
+                .name(realmFileName)
+                .build();
+        mRealm = Realm.getInstance(config);
+
         AbstractList<? extends RealmObject> realmObjects;
 
         if(getIntent().getExtras().containsKey(EXTRAS_REALM_MODEL_INDEX)) {
